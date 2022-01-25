@@ -2,7 +2,7 @@
 
 ### Purpose
 
-With SSH authentication you don't need to enter your credentials (GitHub username and password each time you push a commit to the remote).  You can skip this step for now and complete it later after the course.  
+With SSH authentication you don't need to enter your credentials (GitHub username and password each time you push a commit to the remote).  You can skip this step for now and complete it later after the lab.  
 
 #### This is your checklist
 
@@ -80,13 +80,22 @@ total 16
 -rw-r--r--  1    422 Dec 17 12:20 id_rsa.pub
 % 
 ```
+
 #### Step 4: Copy `ssh` key
+
 Navigate to the `.ssh` directory
+
 <kbd> cd ~/.ssh </kbd>  
+
 open `id_rsa.pub` using your editor of choice and copy its contents.
+
 ### Windows Users
+
 Follow [How to Create SSH Keys with PuTTY on Windows](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/create-with-putty/)
+
+
 ## Add `ssh` key to GitHub
+
 - go to your [GitHub account](https://github.com/) (create one if you don't have one, and save your user name and password somewhere easily accessible for you.)
 - click on your avatar/profile picture (upper right of screen)
 - go to `Settings`
