@@ -3,6 +3,8 @@ from math import inf
 import random
 import csv
 
+from Labs.Lab2.cs506.sim import euclidean_dist
+
 
 def point_avg(points):
     """
@@ -11,8 +13,17 @@ def point_avg(points):
     
     Returns a new point which is the center of all the points.
     """
-    # return
-    raise NotImplementedError()
+    centre = [] * len(points[0])
+
+    for i in range(len(points)):
+        for j in range(len(points[i])):
+            centre[j] += points[i][j]
+    
+    for i in range(len(centre)):
+        centre[i] /= len(points)
+
+    return centre
+    # raise NotImplementedError()
 
 
 def update_centers(dataset, assignments):
@@ -44,7 +55,8 @@ def distance(a, b):
     """
     Returns the Euclidean distance between a and b
     """
-    raise NotImplementedError()
+    return euclidean_dist(a, b)
+    # raise NotImplementedError()
 
 def distance_squared(a, b):
     raise NotImplementedError()
