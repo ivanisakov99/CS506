@@ -4,6 +4,7 @@ import random
 import csv
 
 from cs506.sim import euclidean_dist
+from cs506.read import read_csv
 
 
 def point_avg(points):
@@ -33,6 +34,8 @@ def update_centers(dataset, assignments):
     Compute the center for each of the assigned groups.
     Return `k` centers in a list
     """
+    centres = []
+
     raise NotImplementedError()
 
 def assign_points(data_points, centers):
@@ -66,7 +69,15 @@ def generate_k(dataset, k):
     Given `data_set`, which is an array of arrays,
     return a random set of k points from the data_set
     """
-    raise NotImplementedError()
+    centres = []
+    seen = set()
+    while(len(centres) != k):
+        index = random.randint(0, len(dataset) - 1)
+        if index not in seen:
+            seen.add(index)
+            centres.append(dataset[index])
+        
+    return centres
 
 def cost_function(clustering):
     raise NotImplementedError()
@@ -109,3 +120,8 @@ def k_means_pp(dataset, k):
 
     k_points = generate_k_pp(dataset, k)
     return _do_lloyds_algo(dataset, k_points)
+
+
+if __name__ == '__main__':
+    dataset = read_csv('./dataset_1.csv')
+    # print(len(set(tuple(elem) for elem in dataset).intersection([tuple(elem) for elem in generate_k(dataset, len(dataset))])))
