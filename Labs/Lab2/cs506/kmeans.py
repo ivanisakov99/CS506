@@ -11,6 +11,7 @@ def point_avg(points):
     
     Returns a new point which is the center of all the points.
     """
+    # return
     raise NotImplementedError()
 
 

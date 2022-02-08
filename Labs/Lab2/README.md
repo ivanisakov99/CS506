@@ -73,7 +73,7 @@ ERROR:   py39: commands failed
 
 ## Goal
 
-Take a look at the library functions [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/cs506/read.py), [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/cs506/sim.py) and [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/cs506/kmeans.py).
+Take a look at the library functions [here](./cs506/read.py), [here](./cs506/sim.py) and [here](./cs506/kmeans.py).
 
 Remove the
 
@@ -85,7 +85,7 @@ line and replace it with code that does what the function should do. Test your i
 
 ## Bonus
 
-It's a good idea to take a look at the tests defined [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/tests/test_read.py), [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/tests/test_sim.py) and [here](https://github.com/gallettilance/CS506-Spring2022/blob/master/02-library/tests/test_kmeans.py), and add a few tests of your own. Remember to use both positive and negative examples for testing.
+It's a good idea to take a look at the tests defined [here](./tests/test_read.py), [here](./tests/test_sim.py) and [here](./tests/test_kmeans.py), and add a few tests of your own. Remember to use both positive and negative examples for testing.
 
 ## Matrix Determinant
 
