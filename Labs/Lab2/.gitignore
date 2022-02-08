@@ -1,7 +1,6 @@
 .DS_Store
-.eggs
-.tox
+.eggs/
+.tox/
 .coverage
 cs506.egg-info/
-cs506/__pycache__
-tests/__pycache__
+build/
