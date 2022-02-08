@@ -3,3 +3,5 @@
 .tox
 .coverage
 cs506.egg-info/
+cs506/__pycache__
+tests/__pycache__
