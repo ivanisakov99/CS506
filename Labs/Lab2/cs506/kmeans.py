@@ -3,7 +3,7 @@ from math import inf
 import random
 import csv
 
-from Labs.Lab2.cs506.sim import euclidean_dist
+from cs506.sim import euclidean_dist
 
 
 def point_avg(points):
