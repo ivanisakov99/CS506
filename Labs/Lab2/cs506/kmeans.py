@@ -101,9 +101,31 @@ def generate_k_pp(dataset, k):
     where points are picked with a probability proportional
     to their distance as per kmeans pp
     """
-    first = dataset[np.random.randint(len(dataset))]
+    centres = []
+    available_points = set(tuple(data) for data in dataset)
     
-    raise NotImplementedError()
+    centres.append(dataset[np.random.randint(len(available_points))])
+    available_points.remove(tuple(centres[-1]))
+
+    for i in range(k - 1):
+        distances = list()
+
+        for point in available_points:
+            distances.append([distance_squared(centres[-1], point), point])
+        
+        distances.sort()
+        random = np.random.random()
+        r = 0.0
+
+        for entry in distances:
+            r += entry[0]
+
+            if r > random:
+                centres.append(list(entry[1]))
+                available_points.remove(entry[1])
+                break
+
+    return centres
 
 
 def _do_lloyds_algo(dataset, k_points):
@@ -137,7 +159,13 @@ def k_means_pp(dataset, k):
 
 if __name__ == '__main__':
     print(
-        cost_function(
-            _do_lloyds_algo([[-3, 2], [-2, 1],[3,2],[4,1],[0, -1]], [[0, 0], [2, 1]])
-        )
+        # cost_function(
+            # _do_lloyds_algo(
+                generate_k_pp(
+                [[-3, 2], [-2, 1],[3,2],[4,1],[0, -1]], 
+                # [[0, 0], [2, 1]]
+                2
+                )
+            # )
+        # )
     )
