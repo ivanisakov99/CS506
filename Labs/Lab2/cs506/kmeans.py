@@ -1,5 +1,4 @@
 from collections import defaultdict
-from dataclasses import replace
 from math import inf
 import numpy as np
 
@@ -8,18 +7,18 @@ def point_avg(points):
     """
     Accepts a list of points, each with the same number of dimensions.
     (points can have more dimensions than 2)
-    
+
     Returns a new point which is the center of all the points.
     """
     centre = [0] * len(points[0])
-    
+
     for i in range(len(points)):
         for j in range(len(points[i])):
             centre[j] += points[i][j]
-    
+
     for i in range(len(centre)):
         centre[i] /= len(points)
-    
+
     return centre
 
 
@@ -31,14 +30,15 @@ def update_centers(dataset, assignments):
     Return `k` centers in a list
     """
     clusters, centres = defaultdict(list), defaultdict(list)
-    
+
     for i, cluster in enumerate(assignments):
         clusters[cluster].append(dataset[i])
-    
+
     for i, points in clusters.items():
         centres[i] = point_avg(points)
 
     return [centre for centre in centres.values()]
+
 
 def assign_points(data_points, centers):
     """
@@ -68,8 +68,10 @@ def distance(a, b):
         res += (a[i] - b[i])**2
     return res**(1/2)
 
+
 def distance_squared(a, b):
     return distance(a, b) ** 2
+
 
 def generate_k(dataset, k):
     """
@@ -78,6 +80,7 @@ def generate_k(dataset, k):
     """
     index = np.random.choice(len(dataset), k, replace=False)
     return [dataset[i] for i in index]
+
 
 def cost_function(clustering: defaultdict[:, list]):
     """
@@ -103,16 +106,16 @@ def generate_k_pp(dataset, k):
     """
     centres = []
     available_points = set(tuple(data) for data in dataset)
-    
+
     centres.append(dataset[np.random.randint(len(available_points))])
     available_points.remove(tuple(centres[-1]))
 
-    for i in range(k - 1):
+    for _ in range(k - 1):
         distances = list()
 
         for point in available_points:
             distances.append([distance_squared(centres[-1], point), point])
-        
+
         distances.sort()
         random = np.random.random()
         r = 0.0
@@ -144,7 +147,7 @@ def _do_lloyds_algo(dataset, k_points):
 def k_means(dataset, k):
     if k not in range(1, len(dataset)+1):
         raise ValueError("lengths must be in [1, len(dataset)]")
-    
+
     k_points = generate_k(dataset, k)
     return _do_lloyds_algo(dataset, k_points)
 
@@ -155,17 +158,3 @@ def k_means_pp(dataset, k):
 
     k_points = generate_k_pp(dataset, k)
     return _do_lloyds_algo(dataset, k_points)
-
-
-if __name__ == '__main__':
-    print(
-        # cost_function(
-            # _do_lloyds_algo(
-                generate_k_pp(
-                [[-3, 2], [-2, 1],[3,2],[4,1],[0, -1]], 
-                # [[0, 0], [2, 1]]
-                2
-                )
-            # )
-        # )
-    )
