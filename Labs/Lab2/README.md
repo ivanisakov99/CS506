@@ -83,6 +83,13 @@ raise NotImplementedError()
 
 line and replace it with code that does what the function should do. Test your implementation by running "tox". The goal is to get all tests to pass. Upload your implementations to github by creating a pull request.
 
+## Updating The Package
+```bash
+pip3 install .
+```
+
+To apply the changes to the packages
+
 ## Bonus
 
 It's a good idea to take a look at the tests defined [here](./tests/test_read.py), [here](./tests/test_sim.py) and [here](./tests/test_kmeans.py), and add a few tests of your own. Remember to use both positive and negative examples for testing.
