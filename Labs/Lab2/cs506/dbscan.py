@@ -1,16 +1,35 @@
+import matplotlib.pyplot as plt
+import numpy as np
 from sim import euclidean_dist
 
-class DBC():
+
+class DBC:
 
     def __init__(self, dataset, min_pts, epsilon):
         self.dataset = dataset
         self.min_pts = min_pts
         self.epsilon = epsilon
 
-    def snapshot():
-        pass
-    
+    def snapshot(self, P_index, assignments):
+        fig, ax = plt.subpolts()
+        colours = np.array([x for x in 'bgremykbgremykbgrcmykbgrcayk'])
+        ax.scatter(self.dataset[:, 0], self.dataset[:, 1],
+                   color=colours[assignments].tolist(), s=10, alpha=0.8)
+
+        # Create circle around the scatters
+        cir = plt.Circle(self.dataset[P_index],
+                         self.epsilon, fill=False, alpha=0.8)
+        ax.add_patch(cir)
+        # Necessary or else the circles appear to be oval shaped
+        ax.set_aspect('equal')
+
+        fig.savefig('temp.png')
+        plt.close()
+
     def epsilon_neighbourhood(self, P):
+        """
+        Search for points in the neighbourhood
+        """
         neighbourhood = []
 
         for PN in range(len(self.dataset)):
@@ -20,19 +39,20 @@ class DBC():
 
         return neighbourhood
 
-    def explore_and_assign_eps_neighbourhood(self, P, cluster, assignments):
-        neighbourhood = self.epsilon_neighbourhood(P)
+    def explore_and_assign_eps_neighbourhood(self, P_index, cluster, assignments):
+        neighbourhood = self.epsilon_neighbourhood(P_index)
 
         while neighbourhood:
             neighbour_of_P = neighbourhood.pop()
 
             if assignments[neighbour_of_P] != 0:
-                # 
-                pass
+                continue
 
             assignments[neighbour_of_P] = cluster
+            self.snapshot(neighbour_of_P, assignments)
 
             next_neighbourhood = self.epsilon_neighbourhood(neighbour_of_P)
+
             if len(next_neighbourhood) >= self.min_pts:
                 # This is a core point
                 # Its neighbours should be explored / assigned also
@@ -49,15 +69,14 @@ class DBC():
         assignments = [0] * len(self.dataset)
         cluster = 1
 
-        for P in range(len(self.dataset)):
-
-            if assignments[P] != 0:
+        for P_index in range(len(self.dataset)):
+            if assignments[P_index] != 0:
                 # Already assigned
                 continue
 
-            if len(self.epsilon_neighbourhood(P)) >= self.min_pts:
+            if len(self.epsilon_neighbourhood(P_index)) >= self.min_pts:
                 # Core point
                 assignments = self.explore_and_assign_eps_neighbourhood(
-                    P, cluster, assignments)
+                    P_index, cluster, assignments)
 
         return assignments
