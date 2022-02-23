@@ -1,5 +1,4 @@
 import copy
-# import read
 
 def get_determinant(A: list[list]):
     """
