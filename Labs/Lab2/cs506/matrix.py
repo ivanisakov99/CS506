@@ -2,15 +2,18 @@ import copy
 
 def get_determinant(A: list[list]):
     """
+    Compute the determinant of a square matrix
+    :param A Square matrix n by n
+    :return Determinant of `A`
     """
     if len(A) != len(A[0]):
         raise ValueError('Matrix must be square')
     
-    det, n = 0, len(A)
-
+    n = len(A)
     if n == 2 and len(A[0]) == 2:
         return A[0][0] * A[1][1] - A[0][1] * A[1][0]
 
+    det = 0
     for i in range(n):
         B = copy.deepcopy(A)
         B = B[1:]
