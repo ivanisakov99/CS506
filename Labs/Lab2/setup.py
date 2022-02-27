@@ -5,6 +5,8 @@ with open('README.md', 'r') as f:
 
 tests_require = [
   'numpy',
+  'pandas',
+  'sklearn',
   'pytest',
   'pytest-cov',
   'testfixtures',
