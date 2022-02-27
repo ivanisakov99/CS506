@@ -1,6 +1,3 @@
-import pandas as pd
-from sklearn.model_selection._split import train_test_split
-import numpy as np
 class KNN():
     def __init__(self, points, labels, k) -> None:
         """
