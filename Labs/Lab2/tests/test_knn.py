@@ -42,4 +42,10 @@ def test_out_of_bounds():
     try:
         knn = KNN([0,0], [1], -1)
     except ValueError as e:
-        assert str(e) == "k needs to be in range"
+        assert str(e) == "k needs to be in range!"
+
+    try:
+        knn = KNN([[0, 0], [1, 1]], [1, 0], 1)
+        knn.predict([-1, -1], method='')
+    except ValueError as e:
+        assert str(e) == "Aggregation method needs to be selected from the list!"
