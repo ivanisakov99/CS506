@@ -65,4 +65,6 @@ class SVD:
 
 
 if __name__ == '__main__':
+    
+    u, s, v = np.linalg.svd()
     pass
