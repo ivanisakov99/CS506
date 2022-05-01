@@ -14,3 +14,6 @@
 # HW3
 * ex2 32/35
     * 2.d Should create 4 clusters
+
+# HW5
+* To Do
